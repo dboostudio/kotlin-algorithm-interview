@@ -24,7 +24,7 @@ class P6_6Test : ShouldSpec({
             val prefixAndPalindromeAndPostfixGen =
                 palindromeGen.flatMap { palindrome ->
                     val prefixGen = Arb.alphabetic(5..10)
-                        .filter { it.last() != palindrome.first() }
+                        .filter { it.last() != palindrome.last() }
                     val tripleGen = prefixGen.flatMap { prefix ->
                         Arb.alphabetic(5..10)
                             .filter { it.first() !in listOf(prefix.last(), palindrome.first()) }
@@ -40,6 +40,7 @@ class P6_6Test : ShouldSpec({
                 }
 
             checkAll(
+                iterations = 1000000,
                 prefixAndPalindromeAndPostfixGen
             ) { (prefix, palindrome, postfix) ->
                 val string = prefix + palindrome + postfix
