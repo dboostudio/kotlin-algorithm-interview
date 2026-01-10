@@ -1,5 +1,3 @@
-package ch06
-
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.Codepoint
 import io.kotest.property.arbitrary.of
