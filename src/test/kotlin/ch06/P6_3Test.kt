@@ -1,11 +1,13 @@
 package ch06
 
+import alphabeticAndWhiteSpace
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.filter
 import io.kotest.property.arbitrary.list
 import io.kotest.property.checkAll
+import numericAndWhiteSpace
 
 class P6_3Test : ShouldSpec({
 

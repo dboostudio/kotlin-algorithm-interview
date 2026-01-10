@@ -1,5 +1,6 @@
 package ch06
 
+import alphabetic
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
