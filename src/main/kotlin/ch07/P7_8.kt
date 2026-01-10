@@ -3,7 +3,7 @@ package ch07
 import java.util.*
 
 class P7_8 {
-    fun trappingRain(heights: IntArray): Int {
+    fun trappingRain1(heights: IntArray): Int {
         val stack: Deque<Int> = ArrayDeque()
         var volume = 0
         heights.forEachIndexed { i, height ->
@@ -22,7 +22,7 @@ class P7_8 {
 
     fun trappingRain2(heights: IntArray): Int {
         var left = 0
-        var right = heights.size - 1
+        var right = heights.lastIndex
 
         var volume = 0
 
@@ -30,8 +30,8 @@ class P7_8 {
         var rightMax = heights[right]
 
         while (left < right) {
-            leftMax = leftMax.coerceAtMost(heights[left])
-            rightMax = rightMax.coerceAtMost(heights[right])
+            leftMax = leftMax.coerceAtLeast(heights[left])
+            rightMax = rightMax.coerceAtLeast(heights[right])
 
             if (leftMax <= rightMax) {
                 volume += leftMax - heights[left]
