@@ -14,7 +14,22 @@ class P6_6Test : ShouldSpec({
     val P6_6 = P6_6()
 
     context("longestPalindrome") {
-        should("pass") {
+        should("pass : return itself if string length is 1") {
+            checkAll(
+                Arb.alphabetic(1..1)
+            ) { alphabet ->
+                P6_6.longestPalindrome(alphabet) shouldBe alphabet
+            }
+        }
+        should("pass : return itself if string is palindrome") {
+            checkAll(
+                Arb.alphabetic(1..10)
+            ) { halfOfPalindrome ->
+                val palindrome = halfOfPalindrome + halfOfPalindrome.reversed()
+                P6_6.longestPalindrome(palindrome) shouldBe palindrome
+            }
+        }
+        should("pass : return longest palindrome with prefix, postfix which not ") {
 
             val palindromeSizeRange = 15..20
             val palindromeGen = Arb.alphabetic(palindromeSizeRange).flatMap {
@@ -40,7 +55,6 @@ class P6_6Test : ShouldSpec({
                 }
 
             checkAll(
-                iterations = 1000000,
                 prefixAndPalindromeAndPostfixGen
             ) { (prefix, palindrome, postfix) ->
                 val string = prefix + palindrome + postfix
