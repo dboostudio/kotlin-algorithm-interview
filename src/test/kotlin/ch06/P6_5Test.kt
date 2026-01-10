@@ -3,8 +3,11 @@ package ch06
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.arbitrary.element
+import io.kotest.property.arbitrary.flatMap
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.map
+import io.kotest.property.arbitrary.set
 import io.kotest.property.checkAll
 
 class P6_5Test : ShouldSpec({
@@ -13,8 +16,13 @@ class P6_5Test : ShouldSpec({
 
     context("groupAnagram") {
         should("pass") {
+
+            val anagramSourceAndShuffledCountGen = Arb.set(Arb.alphabetic(3..3), 3..5).flatMap {
+                Arb.map(Arb.element(it), Arb.int(1..3))
+            }
+
             checkAll(
-                Arb.map(Arb.alphabetic(3..3), Arb.int(1..3), 3, 5)
+                anagramSourceAndShuffledCountGen
             ) { anagramSources ->
                 var inputArray: ArrayList<String> = ArrayList()
                 val expected = buildList {
