@@ -1,5 +1,7 @@
 package ch08
 
+import common.ListNode
+
 class P8_16 {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
         var node1 = l1

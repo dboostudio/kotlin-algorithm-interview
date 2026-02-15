@@ -1,5 +1,7 @@
 package ch08
 
+import common.ListNode
+
 class P8_14 {
     fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
         if (list1 == null) return list2

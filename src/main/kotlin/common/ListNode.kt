@@ -1,4 +1,4 @@
-package ch08
+package common
 
 class ListNode(var `val`: Int) {
     var next: ListNode? = null
